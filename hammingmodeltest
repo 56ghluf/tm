@@ -1,0 +1,17 @@
+2 legs | 4 legs | wings | fins | pointy ears | floppy ears | tail | big | hair | scales | claws
+Dog
+Cat
+Bird
+Fish
+
+-1, 1, -1, -1, -1, 1, 1, 1, 1, -1, 1
+array([[10.22222222],
+       [ 0.        ],
+       [ 0.        ],
+       [ 0.        ]])
+       
+-1, -1, -1, 1, -1, -1, -1, 1, -1, 1, -1
+array([[ 0.        ],
+       [ 0.        ],
+       [ 0.        ],
+       [12.66666667]])
