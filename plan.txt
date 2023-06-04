@@ -1,0 +1,5 @@
+1. Explication du fonctionement de réseaux neuronaux binaires 500 mots
+2. Architecture des réseaux neuronaux étudiés et explication des outils qui vont être utilisé 500 mots
+3. Tests des différents réseaux (précision, adaptabilité) 750 mots
+4. Comparaison des réseaux aux méthodes classiques employées 750 mots
+(5.) Création de circuits ASIG à partir de l'architecture des réseaux les plus performants
