@@ -1,5 +1,5 @@
 from math import ceil
-from numpy import empty, array, vectorize
+from numpy import empty, array, vectorize, exp
 
 ### Input and output generation
 # Function to convert number to binary string
@@ -54,14 +54,6 @@ def _hardlim(x):
 
 hardlim = vectorize(_hardlim)
 
-### Error calculation
-def e2(E):
-    err = 0
-    for i in range(len(E)):
-        for j in range(len(E[0])):
-            err += E[i][j]**2
-    return err
-
 # Hardlimit symetrical
 def _hardlims(x):
     if x >= 0:
@@ -69,6 +61,19 @@ def _hardlims(x):
     return -1
 
 hardlims = vectorize(_hardlims)
+
+def _logsig(x):
+    return 1/(1+exp(x))
+
+logsig = vectorize(_logsig)
+
+### Error calculation
+def e2(E):
+    err = 0
+    for i in range(len(E)):
+        for j in range(len(E[0])):
+            err += E[i][j]**2
+    return err
 
 if __name__ == '__main__':
     print(gen_inputs_outputs(4))
