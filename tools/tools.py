@@ -62,10 +62,17 @@ def _hardlims(x):
 
 hardlims = vectorize(_hardlims)
 
+# Logsig
 def _logsig(x):
     return 1/(1+exp(x))
 
 logsig = vectorize(_logsig)
+
+# Linear
+def _lin(x):
+    return x
+
+lin = vectorize(_lin)
 
 ### Error calculation
 def e2(E):
@@ -76,4 +83,4 @@ def e2(E):
     return err
 
 if __name__ == '__main__':
-    print(gen_inputs_outputs(4))
+    print(logsig(356))
