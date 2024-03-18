@@ -52,6 +52,8 @@ def _hardlim(x):
         return 1
     return 0
 
+hardlim = vectorize(_hardlim)
+
 ### Error calculation
 def e2(E):
     err = 0
@@ -59,8 +61,6 @@ def e2(E):
         for j in range(len(E[0])):
             err += E[i][j]**2
     return err
-
-hardlim = vectorize(_hardlim)
 
 # Hardlimit symetrical
 def _hardlims(x):
