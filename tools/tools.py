@@ -62,9 +62,9 @@ def _hardlims(x):
 
 hardlims = vectorize(_hardlims)
 
-# Logsig
+# Log-sigmoid
 def _logsig(x):
-    return 1/(1+exp(x))
+    return 1/(1+exp(-x))
 
 logsig = vectorize(_logsig)
 
@@ -73,6 +73,19 @@ def _lin(x):
     return x
 
 lin = vectorize(_lin)
+
+### Partial derivatives of the transfer functions
+# Linear
+def _partial_lin(x):
+    return 1
+
+partial_lin = vectorize(_partial_lin)
+
+# Log-sigmoid
+def _partial_logsig(x):
+    return (1-_logsig(x)) * _logsig(x)
+
+partial_logsig = vectorize(_partial_logsig)
 
 ### Error calculation
 def e2(E):
@@ -83,4 +96,4 @@ def e2(E):
     return err
 
 if __name__ == '__main__':
-    print(logsig(356))
+    print(partial_lin([-.75,-.54]))
