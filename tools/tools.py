@@ -74,18 +74,18 @@ def _lin(x):
 
 lin = vectorize(_lin)
 
-### Partial derivatives of the transfer functions
+### Derivatives of the transfer functions
 # Linear
-def _partial_lin(x):
+def _deriv_lin(x):
     return 1
 
-partial_lin = vectorize(_partial_lin)
+deriv_lin = vectorize(_deriv_lin)
 
 # Log-sigmoid
-def _partial_logsig(x):
+def _deriv_logsig(x):
     return (1-_logsig(x)) * _logsig(x)
 
-partial_logsig = vectorize(_partial_logsig)
+deriv_logsig = vectorize(_deriv_logsig)
 
 ### Error calculation
 def e2(E):
@@ -96,4 +96,4 @@ def e2(E):
     return err
 
 if __name__ == '__main__':
-    print(partial_lin([-.75,-.54]))
+    print(deriv_lin([-.75,-.54]))
