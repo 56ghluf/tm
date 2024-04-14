@@ -96,4 +96,4 @@ def e2(E):
     return err
 
 if __name__ == '__main__':
-    print(deriv_lin([-.75,-.54]))
+    print(len(gen_inputs_outputs(16)[0]))
