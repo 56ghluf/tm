@@ -75,6 +75,12 @@ def _lin(x):
 lin = vectorize(_lin)
 
 ### Derivatives of the transfer functions
+# Hard limit
+def _deriv_hardlim(x):
+    return 0
+
+deriv_hardlim = vectorize(_deriv_hardlim)
+
 # Linear
 def _deriv_lin(x):
     return 1
@@ -96,4 +102,4 @@ def e2(E):
     return err
 
 if __name__ == '__main__':
-    print(len(gen_inputs_outputs(16)[0]))
+    print(deriv_hardlim([[235324, 35422, 324123432], [235324, 35422, 324123432], [235324, 35422, 324123432]]))
