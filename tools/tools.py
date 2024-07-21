@@ -1,5 +1,5 @@
 from math import ceil
-from numpy import empty, array, vectorize, exp
+from numpy import empty, array, vectorize, exp, split
 
 ### Input and output generation
 # Function to convert number to binary string
@@ -38,6 +38,32 @@ def gen_inputs_outputs(R):
         inputs[i] = array(a) 
 
     return inputs, outputs, S
+
+# Creates the dict for all the input units
+# takes the size of stacked input layer
+# size must be even if not pairs impossible
+def _gen_input_unit_dict(l):
+    if l % 2:
+        raise Exception('Input length must be even.')
+
+    a = dict()
+
+    for i in range(int(l/2)):
+        a[f'Unit: {i}'] = empty((2**l, 2), dtype=int)
+        
+    return a
+
+# Convert stacked input to paired input
+def gen_pair_inputs(inputs):
+    l = len(inputs[0])
+    a = _gen_input_unit_dict(l) 
+
+    split_inputs = split(inputs, l/2, axis=1)
+
+    for i in range(int(l/2)):
+        a[f'Unit: {i}'] = split_inputs[i]
+    
+    return a
 
 ### Transfer function
 # Convert from binary input to symetrical input 
@@ -102,4 +128,4 @@ def e2(E):
     return err
 
 if __name__ == '__main__':
-    print(deriv_hardlim([[235324, 35422, 324123432], [235324, 35422, 324123432], [235324, 35422, 324123432]]))
+    print(gen_pair_inputs(gen_inputs_outputs(16)[0]))
