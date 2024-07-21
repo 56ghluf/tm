@@ -49,7 +49,7 @@ def _gen_input_unit_dict(l):
     a = dict()
 
     for i in range(int(l/2)):
-        a[f'Unit: {i}'] = empty((2**l, 2), dtype=int)
+        a[f'unit_{i}'] = empty((2**l, 2), dtype=int)
         
     return a
 
@@ -78,7 +78,7 @@ def gen_pair_inputs(inputs):
     
     # Fill dict with the split
     for i in range(len(split_mixed)):
-        a[f'Unit: {i}'] = split_mixed[i]
+        a[f'unit_{i}'] = split_mixed[i]
     
     # Finish up
     return a
