@@ -1,5 +1,5 @@
 from math import ceil
-from numpy import empty, array, vectorize, exp, split
+from numpy import empty, array, vectorize, exp, split, empty_like
 
 ### Input and output generation
 # Function to convert number to binary string
@@ -55,14 +55,32 @@ def _gen_input_unit_dict(l):
 
 # Convert stacked input to paired input
 def gen_pair_inputs(inputs):
+    # Get input length
     l = len(inputs[0])
+    # Get dictionary to fill
     a = _gen_input_unit_dict(l) 
 
-    split_inputs = split(inputs, l/2, axis=1)
+    # Seperate the input into halves
+    first_half = inputs[:,:int(l/2)] 
+    second_half = inputs[:, int(l/2):]
 
-    for i in range(int(l/2)):
-        a[f'Unit: {i}'] = split_inputs[i]
+    # Empty array to fill with mixed inputs 
+    mixed_inputs = empty_like(inputs)
+   
+    # Itereate and mix
+    for i in range(len(inputs)):
+        for j in range(0, l, 2):
+            mixed_inputs[i][j] = first_half[i][int(j/2)]
+            mixed_inputs[i][j+1] = second_half[i][int(j/2)]
     
+    # Split to fill dict
+    split_mixed = split(mixed_inputs, l/2, axis=1)
+    
+    # Fill dict with the split
+    for i in range(len(split_mixed)):
+        a[f'Unit: {i}'] = split_mixed[i]
+    
+    # Finish up
     return a
 
 ### Transfer function
