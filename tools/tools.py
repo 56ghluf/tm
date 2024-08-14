@@ -145,5 +145,19 @@ def e2(E):
             err += E[i][j]**2
     return err
 
+### Count the number of parameters
+def count_params(l, inp=16, out=9):
+    count = 0
+    
+    ps = inp
+
+    for s in l:
+        count += s * ps + s
+        ps = s
+
+    count += out * ps + out 
+
+    return count
+
 if __name__ == '__main__':
-    print(gen_pair_inputs(gen_inputs_outputs(16)[0]))
+    print(count_params(2, 2))
