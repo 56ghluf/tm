@@ -1,13 +1,18 @@
-64 : 1673
-128 : 3337
-32, 32 : 1897
-64, 64 : 5833
-16, 16, 16 : 969
-32, 32, 32 : 2953
-4, 64 : 973
-64, 4 : 1393
-32, 64 : 3241
-32, 32, 16 : 2281
-32, 64, 32 : 5033
-16, 32, 16 : 1497
-4, 64, 16 : 1581
+Layers: 64, Count: 1673
+Layers: 128, Count: 3337
+Layers: 32, 32, Count: 1897
+Layers: 64, 64, Count: 5833
+Layers: 16, 16, 16, Count: 969
+Layers: 32, 32, 32, Count: 2953
+Layers: 4, 64, Count: 973
+Layers: 64, 4, Count: 1393
+Layers: 32, 64, Count: 3241
+Layers: 32, 32, 16, Count: 2281
+Layers: 32, 64, 32, Count: 5033
+Layers: 16, 32, 16, Count: 1497
+Layers: 4, 64, 16, Count: 1581
+Units: 4, 8, 8, Layers: 24, Count: 1289
+Units: 4, 8, 8, Layers: 20, Count: 1185
+Units: 2, 5, 7, Layers: 0, Count: 437
+Units: 3, 7, 7, Layers: 0, Count: 613
+Units: 4, 7, 7, Layers: 28, Count: 1239

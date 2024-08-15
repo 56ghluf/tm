@@ -146,6 +146,7 @@ def e2(E):
     return err
 
 ### Count the number of parameters
+# Standard network
 def count_params(l, inp=16, out=9):
     count = 0
     
@@ -159,5 +160,27 @@ def count_params(l, inp=16, out=9):
 
     return count
 
+# Unit reduced network
+def count_params_reduced(u, l, inp=16, out=9):
+    count = 0
+    current_units = inp 
+    pu = 1
+    for cu in u:
+        current_units /= 2
+        for _ in range(int(current_units)):
+            count += cu*(pu*2) + cu 
+        pu = cu
+    
+    ps = current_units*pu
+    
+    if l != [0]:
+        for s in l:
+            count += s*ps + s
+            ps = s
+    
+    count += out * ps + out
+
+    return int(count)
+
 if __name__ == '__main__':
-    print(count_params(2, 2))
+    print(count_params_reduced(u=[4, 8, 8], l=[10]))
