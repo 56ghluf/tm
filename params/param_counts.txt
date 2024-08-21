@@ -11,8 +11,23 @@ Layers: 32, 32, 16, Count: 2281
 Layers: 32, 64, 32, Count: 5033
 Layers: 16, 32, 16, Count: 1497
 Layers: 4, 64, 16, Count: 1581
+Units: 2, Layers: 64, Count: 1721
+Units: 2, 3, Layers: 16, Count: 469
+Units: 2, 3, Layers: 32, Count: 821
+Units: 2, 3, Layers: 64, Count: 1525
+Units: 2, 3, Layers: 128, Count: 2933
+Units: 2, 3, Layers: 256, Count: 5749
+Units: 2, 3, Layers: 512, Count: 11381
+Units: 2, 3, Layers: 1024, Count: 22645
+Units: 5, 5, 5, Layers: 128, Count: 3019
+Units: 5, 5, 5, Layers: 0, Count: 549
+Units: 16, 16, 16, Layers: 0, Count: 3849
+Units: 4, 8, 16, Layers: 0, Count: 1225
+Units: 16, 8, 4, Layers: 0, Count: 1657
+Units: 4, 8, 8, Layers: 0, Count: 809
+Units: 4, 8, 8, Layers: 32, Count: 1497
 Units: 4, 8, 8, Layers: 24, Count: 1289
 Units: 4, 8, 8, Layers: 20, Count: 1185
-Units: 2, 5, 7, Layers: 0, Count: 437
-Units: 3, 7, 7, Layers: 0, Count: 613
+Units: 4, 8, 8, Layers: 10, Count: 925
 Units: 4, 7, 7, Layers: 28, Count: 1239
+Units: 4, 7, 7, Layers: 24, Count: 1143
