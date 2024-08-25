@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from numpy import linspace, meshgrid, log, zeros, append, ones, array, nan
+from numpy import linspace, meshgrid, log, zeros, append, ones, array, nan, vectorize, empty
 
 # Save figure
 def save_fig(name):
@@ -10,7 +10,7 @@ def calc_z(x, y):
     return 0.25*x**2 + 2*y**2 + 0.5*x + 2*y + 4
 
 # Plot the countours of z = x^2 + 2y^2 + 3x + 2y + 4
-def plot_quadratic(n, x_range, y_range):
+def plot_quadratic(x_range, y_range):
         x = linspace(*x_range, 100)
         y = linspace(*y_range, 100)
 
@@ -117,7 +117,112 @@ def plot_relu_and_deriv():
 
     # plt.show()
 
+def func1(x):
+    a = lambda p: 0.5*(1.5*p**4 + p**3 - 4*p**2 + 3)
+    a = vectorize(a)
+    return a(x)
+
+def deriv_func1(x):
+    a = lambda p: 0.5*(6*x**3 + 3*p**2 - 8*p)
+    a = vectorize(a)
+    return a(x) 
+
+def plot_momentum():
+    x = linspace(-2.2, 2.2, 100)
+    
+    y = func1(x)
+    
+    # Run gradient descent without momentum  
+    n1 = 100 
+    preds = empty(n1+1)
+    preds[0] = 1.75
+    
+    for i in range(n1):
+        preds[i+1] = preds[i] - 0.01 * deriv_func1(preds[i])
+    
+    preds_y = func1(preds)
+
+    # Run gradient descent with moementum
+    n2 = 70 
+    m_preds = empty(n2+1)
+    m_preds[0] = 1.75
+
+    m = deriv_func1(m_preds[0])
+    
+    beta = 0.95
+
+    for i in range(n2):
+        m = beta * m + (1-beta) * deriv_func1(m_preds[i])
+        m_preds[i+1] = m_preds[i] - 0.01 * m
+
+    m_preds_y = func1(m_preds)
+    
+    # Initialize the plots
+    fig, axs = plt.subplots(1, 2, figsize=(16, 8))
+    
+    # First plot
+    axs[0].plot(x, y, color='tab:cyan', zorder=1)
+    normal_plot = axs[0].quiver(
+            preds[:-1], 
+            preds_y[:-1],
+            preds[1:]-preds[:-1],
+            preds_y[1:]-preds_y[:-1],
+            scale=1,
+            scale_units='xy',
+            angles='xy',
+            color='tab:gray',
+            zorder=2)
+
+    axs[0].set_title(r'$f(x)$')
+
+    axs[0].set_xlabel('x')
+    axs[0].xaxis.set_label_coords(1, 0.39)
+
+    axs[0].set_xlim(-2.2, 2.2)
+    axs[0].set_ylim(-2.2, 3.2)
+
+    axs[0].spines['left'].set_position('zero') 
+    axs[0].spines['bottom'].set_position('zero') 
+    axs[0].spines['right'].set_color('none')
+    axs[0].spines['top'].set_color('none')
+
+    axs[0].plot(1, 0, ">k", transform=axs[0].get_yaxis_transform(), clip_on=False)
+    axs[0].plot(0, 1, "^k", transform=axs[0].get_xaxis_transform(), clip_on=False)
+
+    # Second plot
+    axs[1].plot(x, y, color='tab:cyan', zorder=1)
+    momentum_plot = axs[1].quiver(
+            m_preds[:-1], 
+            m_preds_y[:-1],
+            m_preds[1:]-m_preds[:-1],
+            m_preds_y[1:]-m_preds_y[:-1],
+            scale=1,
+            scale_units='xy',
+            angles='xy',
+            color='k',
+            zorder=2)
+
+    axs[1].set_title(r'$f(x)$')
+
+    axs[1].set_xlabel('x')
+    axs[1].xaxis.set_label_coords(1, 0.39)
+
+    axs[1].set_xlim(-2.2, 2.2)
+    axs[1].set_ylim(-2.2, 3.2)
+
+    axs[1].spines['left'].set_position('zero') 
+    axs[1].spines['bottom'].set_position('zero') 
+    axs[1].spines['right'].set_color('none')
+    axs[1].spines['top'].set_color('none')
+
+    axs[1].plot(1, 0, ">k", transform=axs[1].get_yaxis_transform(), clip_on=False)
+    axs[1].plot(0, 1, "^k", transform=axs[1].get_xaxis_transform(), clip_on=False)
+
+    fig.legend([normal_plot, momentum_plot], ['Optimisation sans élan', 'Optimisation avec élan'], loc=(0.8, 0.88))
+
+    # plt.show()
+
 if __name__=='__main__':
     # Generate various plots and save to file
-    plot_relu_and_deriv()
-    save_fig('ReluAndDeriv.png')
+    plot_momentum()
+    save_fig('momentum.png')
