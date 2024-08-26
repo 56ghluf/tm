@@ -5,6 +5,15 @@ from numpy import linspace, meshgrid, log, zeros, append, ones, array, nan, vect
 def save_fig(name):
     plt.savefig(name, bbox_inches='tight')
 
+def set_axs(axs):
+    axs.spines['left'].set_position('zero') 
+    axs.spines['bottom'].set_position('zero') 
+    axs.spines['right'].set_color('none')
+    axs.spines['top'].set_color('none')
+
+    axs.plot(1, 0, ">k", transform=axs.get_yaxis_transform(), clip_on=False)
+    axs.plot(0, 1, "^k", transform=axs.get_xaxis_transform(), clip_on=False)
+
 # Some example quadratic
 def calc_z(x, y):
     return 0.25*x**2 + 2*y**2 + 0.5*x + 2*y + 4
@@ -181,13 +190,7 @@ def plot_momentum():
     axs[0].set_xlim(-2.2, 2.2)
     axs[0].set_ylim(-2.2, 3.2)
 
-    axs[0].spines['left'].set_position('zero') 
-    axs[0].spines['bottom'].set_position('zero') 
-    axs[0].spines['right'].set_color('none')
-    axs[0].spines['top'].set_color('none')
-
-    axs[0].plot(1, 0, ">k", transform=axs[0].get_yaxis_transform(), clip_on=False)
-    axs[0].plot(0, 1, "^k", transform=axs[0].get_xaxis_transform(), clip_on=False)
+    set_axs(axs[0])
 
     # Second plot
     axs[1].plot(x, y, color='tab:cyan', zorder=1)
@@ -210,19 +213,86 @@ def plot_momentum():
     axs[1].set_xlim(-2.2, 2.2)
     axs[1].set_ylim(-2.2, 3.2)
 
-    axs[1].spines['left'].set_position('zero') 
-    axs[1].spines['bottom'].set_position('zero') 
-    axs[1].spines['right'].set_color('none')
-    axs[1].spines['top'].set_color('none')
-
-    axs[1].plot(1, 0, ">k", transform=axs[1].get_yaxis_transform(), clip_on=False)
-    axs[1].plot(0, 1, "^k", transform=axs[1].get_xaxis_transform(), clip_on=False)
+    set_axs(axs[1])
 
     fig.legend([normal_plot, momentum_plot], ['Optimisation sans élan', 'Optimisation avec élan'], loc=(0.8, 0.88))
+
+    plt.show()
+
+def plot_lin_sep():
+    fx = [0, 1]
+    fy = [1, 0]
+    ex = [0, 1]
+    ey = [0, 1]
+
+    fig, axs = plt.subplots(1, figsize=(8, 8))
+
+    axs.scatter(fx, fy, 150, zorder=3) 
+    axs.scatter(ex, ey, 150, zorder=3)
+
+    set_axs(axs)
+
+    axs.set_xlabel('$p_1$')
+    axs.set_ylabel('$p_2$')
+    
+    axs.set_xlim([-0.02, 1.05])
+    axs.set_ylim([-0.02, 1.05])
+
+    # plt.show()
+
+def plot_lin_sep1():
+    fx = [0, 1]
+    fy = [1, 0]
+    ex = [0, 1]
+    ey = [0, 1]
+
+    x = linspace(-1, 1, 2)
+    y = -x + 0.8
+
+    fig, axs = plt.subplots(1, figsize=(8, 8))
+
+    axs.scatter(fx, fy, 150, zorder=3) 
+    axs.scatter(ex, ey, 150, zorder=3)
+
+    axs.plot(x, y, color='tab:cyan')
+
+    set_axs(axs)
+
+    axs.set_xlabel('$p_1$')
+    axs.set_ylabel('$p_2$')
+    
+    axs.set_xlim([-0.02, 1.05])
+    axs.set_ylim([-0.02, 1.05])
+
+    # plt.show()
+
+def plot_lin_sep2():
+    fx = [0, 1]
+    fy = [1, 0]
+    ex = [0, 1]
+    ey = [0, 1]
+
+    x = linspace(-1, 2, 2)
+    y = -x + 1.2 
+
+    fig, axs = plt.subplots(1, figsize=(8, 8))
+
+    axs.scatter(fx, fy, 150, zorder=3) 
+    axs.scatter(ex, ey, 150, zorder=3)
+
+    axs.plot(x, y, color='tab:cyan')
+
+    set_axs(axs)
+
+    axs.set_xlabel('$p_1$')
+    axs.set_ylabel('$p_2$')
+    
+    axs.set_xlim([-0.02, 1.05])
+    axs.set_ylim([-0.02, 1.05])
 
     # plt.show()
 
 if __name__=='__main__':
     # Generate various plots and save to file
     plot_momentum()
-    save_fig('momentum.png')
+    # save_fig('LinSep.png')
