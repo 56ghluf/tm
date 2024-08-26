@@ -36,7 +36,7 @@ def plot_quadratic(x_range, y_range):
 
         fig.colorbar(contour_plot)
 
-        plt.show()
+        # plt.show()
 
 def plot_log_vs_square():
     x = linspace(-0.1, 1.1, 100000)
@@ -89,13 +89,7 @@ def plot_relu_and_deriv():
     axs[0].set_xlim([-5.2, 5.2])
     axs[0].set_ylim([-5.2, 5.2])
 
-    axs[0].spines['left'].set_position('zero') 
-    axs[0].spines['bottom'].set_position('zero') 
-    axs[0].spines['right'].set_color('none')
-    axs[0].spines['top'].set_color('none')
-
-    axs[0].plot(1, 0, ">k", transform=axs[0].get_yaxis_transform(), clip_on=False)
-    axs[0].plot(0, 1, "^k", transform=axs[0].get_xaxis_transform(), clip_on=False)
+    set_axs(axs[0])
 
     axs[0].set_aspect(1)
 
@@ -110,13 +104,7 @@ def plot_relu_and_deriv():
     axs[1].set_xlim([-5.2, 5.2])
     axs[1].set_ylim([-5.2, 5.2])
 
-    axs[1].spines['left'].set_position('zero') 
-    axs[1].spines['bottom'].set_position('zero') 
-    axs[1].spines['right'].set_color('none')
-    axs[1].spines['top'].set_color('none')
-
-    axs[1].plot(1, 0, ">k", transform=axs[1].get_yaxis_transform(), clip_on=False)
-    axs[1].plot(0, 1, "^k", transform=axs[1].get_xaxis_transform(), clip_on=False)
+    set_axs(axs[1])
 
     axs[1].set_aspect(1)
 
@@ -124,7 +112,7 @@ def plot_relu_and_deriv():
     axs[1].scatter([0], [1], s=20, facecolors='tab:blue', edgecolors='tab:blue')
     axs[1].scatter([0], [0], s=20, facecolors='none', edgecolors='tab:blue')
 
-    # plt.show()
+    plt.show()
 
 def func1(x):
     a = lambda p: 0.5*(1.5*p**4 + p**3 - 4*p**2 + 3)
@@ -217,7 +205,7 @@ def plot_momentum():
 
     fig.legend([normal_plot, momentum_plot], ['Optimisation sans élan', 'Optimisation avec élan'], loc=(0.8, 0.88))
 
-    plt.show()
+    # plt.show()
 
 def plot_lin_sep():
     fx = [0, 1]
@@ -294,5 +282,5 @@ def plot_lin_sep2():
 
 if __name__=='__main__':
     # Generate various plots and save to file
-    plot_momentum()
+    plot_relu_and_deriv()
     # save_fig('LinSep.png')
