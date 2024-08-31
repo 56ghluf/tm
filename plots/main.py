@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from numpy import linspace, meshgrid, log, zeros, append, ones, array, nan, vectorize, empty
+from numpy import linspace, meshgrid, log, zeros, append, ones, array, nan, vectorize, empty, exp
 
 # Save figure
 def save_fig(name):
@@ -81,9 +81,9 @@ def plot_relu_and_deriv():
     # Plot relu
     axs[0].plot(x1, y1, color='tab:cyan')
     
-    axs[0].set_title('$relu(x)$')
+    axs[0].set_title('$relu(n)$')
 
-    axs[0].set_xlabel('x')
+    axs[0].set_xlabel('n')
     axs[0].xaxis.set_label_coords(1, 0.47)
 
     axs[0].set_xlim([-5.2, 5.2])
@@ -96,9 +96,9 @@ def plot_relu_and_deriv():
     # Plot relu'
     axs[1].plot(x2, y2, color='tab:blue')
 
-    axs[1].set_title('$relu\'(x)$')
+    axs[1].set_title('$relu\'(n)$')
 
-    axs[1].set_xlabel('x')
+    axs[1].set_xlabel('n')
     axs[1].xaxis.set_label_coords(1, 0.47)
 
     axs[1].set_xlim([-5.2, 5.2])
@@ -112,7 +112,7 @@ def plot_relu_and_deriv():
     axs[1].scatter([0], [1], s=20, facecolors='tab:blue', edgecolors='tab:blue')
     axs[1].scatter([0], [0], s=20, facecolors='none', edgecolors='tab:blue')
 
-    plt.show()
+    # plt.show()
 
 def func1(x):
     a = lambda p: 0.5*(1.5*p**4 + p**3 - 4*p**2 + 3)
@@ -280,7 +280,45 @@ def plot_lin_sep2():
 
     # plt.show()
 
+def plot_logsig_and_deriv():
+    x1 = linspace(-5.2, 5.2, 100)
+    y1 = 1 / (1 + exp(-x1)) 
+
+    x2 = linspace(-5.2, 5.2, 100)
+    y2 = (1 / (1 + exp(-x2)))*(1 - 1 / (1 + exp(-x2)))
+    
+    fig, axs = plt.subplots(1, 2, figsize=(16, 8))
+    
+    # Plot relu
+    axs[0].plot(x1, y1, color='tab:cyan')
+    
+    axs[0].set_title('$logsig(n)$')
+
+    axs[0].set_xlabel('n')
+    axs[0].xaxis.set_label_coords(1, 0.47)
+
+    axs[0].set_xlim([-5.2, 5.2])
+    axs[0].set_ylim([-1, 1])
+
+    set_axs(axs[0])
+
+
+    # Plot relu'
+    axs[1].plot(x2, y2, color='tab:blue')
+
+    axs[1].set_title('$logsig\'(n)$')
+
+    axs[1].set_xlabel('n')
+    axs[1].xaxis.set_label_coords(1, 0.47)
+
+    axs[1].set_xlim([-5.2, 5.2])
+    axs[1].set_ylim([-1, 1])
+
+    set_axs(axs[1])
+
+    # plt.show()
+
 if __name__=='__main__':
     # Generate various plots and save to file
     plot_relu_and_deriv()
-    # save_fig('LinSep.png')
+    save_fig('ReluAndDeriv')
