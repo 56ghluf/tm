@@ -1,7 +1,7 @@
 env/
 **/.idea/*
 
-.DS_STORE
+.DS_Store
 
 # Jupyter notebook specific
 .ipynb_checkpoints
