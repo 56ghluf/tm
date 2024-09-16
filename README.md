@@ -72,3 +72,7 @@ Les modules pyhton et leur version.
 
 ## tools
 Contient un module écrit spécifiquement pour ce project : des fonctions de d'activation, un fonction pour générer les entrées et sorties de réseaux, ...
+
+## .gitignore
+
+Gitignore pour ne pas rajouter l'environement virtuel et divers d'autres fichiers au projet git.
